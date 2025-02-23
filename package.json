@@ -1,0 +1,12 @@
+{
+  "name": "proyecto-delivery-uide",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Alddrin Venegas, Mateo Merchan, Tais Carreño",
+  "license": "ISC",
+  "description": "Sistema Delivery para estudiantes de la UIDE"
+}

@@ -1,0 +1,78 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: beige;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* Sección de encabezado */
+.header {
+    background-color: lightsalmon;
+    color: white;
+    padding: 20px;
+    font-size: 24px;
+}
+
+/* Botón de creación de tesista */
+.btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: corn;
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    border: black 2px solid;
+}
+
+.btn:hover {
+    background-color: white;
+    border: none;
+}
+
+/* Estilos de la tabla */
+table {
+    width: 80%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: lightsalmon;
+    color: white;
+}
+
+/* Estilos de los enlaces de acciones */
+.edit {
+    color: darkgreen;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.delete {
+    color: darkred;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.edit:hover {
+    text-decoration: underline;
+}
+
+.delete:hover {
+    text-decoration: underline;
+}
