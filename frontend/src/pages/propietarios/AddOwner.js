@@ -1,5 +1,5 @@
-import './Gerente.css';
-function AddGerente() {
+import './AddOwner.css';
+function AddOwner() {
     return (`
 
 <main>
@@ -54,4 +54,4 @@ function AddGerente() {
     );
 }
 
-export default AddGerente
+export default AddOwner

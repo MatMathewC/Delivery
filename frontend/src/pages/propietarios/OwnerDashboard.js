@@ -1,5 +1,5 @@
-import './IndexPropietario.css'
-function IndexPropietario(){
+import './OwnerDashboard.css'
+function OwnerDashboard(){
     return `
         <div class="dashboard">
             <div class="stats">
@@ -77,4 +77,4 @@ function IndexPropietario(){
     `
 }
 
-export default IndexPropietario;
+export default OwnerDashboard;
