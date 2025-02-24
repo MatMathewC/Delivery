@@ -1,5 +1,5 @@
-import './Cliente.css';
-function AddCliente() {
+import './AddDeliveryPerson.css';
+function AddDeliveryPerson() {
     return (`
 
 <main>
@@ -24,4 +24,4 @@ function AddCliente() {
     );
 }
 
-export default AddCliente
+export default AddDeliveryPerson

@@ -14,8 +14,8 @@ function Navigation() {
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
             <div class="nav-user">
-                <a href="/iniciar_sesion" class="btn_ini">Iniciar Sesión</a>
-                <a href="/crear_cuenta" class="btn_ini">Crear Cuenta</a>
+                <a href="/iniciar-sesion" class="btn_ini">Iniciar Sesión</a>
+                <a href="/crear-cuenta" class="btn_ini">Crear Cuenta</a>
             </div>
         </div>
         </nav>

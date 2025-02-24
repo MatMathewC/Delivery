@@ -9,17 +9,17 @@ function Rol(){
             <div class="role-card" id="cliente">
                 <h2>Cliente</h2>
                 <p>Compra productos de emprendimientos cercanos y apoya a nuestra comunidad.</p>
-                <a class="btn" onclick="selectRole('cliente')" href="/addcliente">Seleccionar</a>
+                <a class="btn" onclick="selectRole('client')" href="/add-client">Seleccionar</a>
             </div>
             <div class="role-card" id="gerente">
-                <h2>Gerente</h2>
+                <h2>Propietario</h2>
                 <p>Administra tu tienda, sube productos y gestiona pedidos.</p>
-                <a class="btn" onclick="selectRole('gerente')" href="/addgerente">Seleccionar</a>
+                <a class="btn" onclick="selectRole('owner')" href="/add-owner">Seleccionar</a>
             </div>
             <div class="role-card" id="repartidor">
                 <h2>Repartidor</h2>
                 <p>Realiza entregas y forma parte de nuestra red de repartidores.</p>
-                <button class="btn" onclick="selectRole('repartidor')">Seleccionar</button>
+                <a class="btn" onclick="selectRole('delivery_person')" href="/add-delivery-person">Seleccionar</a>
             </div>
         </div>
     </div>

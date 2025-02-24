@@ -1,32 +1,91 @@
-const mysql = require( 'mysql2' )
-const express = require( 'express' )
-const cors = require( 'cors' )
-const dotenv = require( 'dotenv' )
+const express = require('express');
+const cors = require('cors');
+const dotenv = require('dotenv');
+const session = require('express-session');
+const mysqlPromise = require('./database'); // Importa la conexión a la base de datos
 dotenv.config();
-const routes = require( './routes/routes' );
 
 const app = express();
 
 // Middleware
-app.use(cors())
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(cors({
+    origin: 'http://localhost:5173', // URL de tu aplicación Vite
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
+// Configuración de la sesión
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } // Usa 'true' si tienes HTTPS
+}));
 
+// Ruta para login y autenticación
+app.post('/api/login', (req, res) => {
+    const { username, password } = req.body;
 
+    // Verifica las credenciales en la base de datos
+    mysqlPromise.query('SELECT * FROM User WHERE username = ? AND password = ?', [username, password])
+        .then(([results]) => {
+            if (results.length > 0) {
+                const user = results[0];
 
-// Ruta de ejemplo del backend para que acceda al frontend
-/* app.get('/api/test', (req, res) =>{
-    const items = [
-        { id:1, nombre:"Mateo", apellidp:"Merchan"},
-        { id:2, nombre:"Juan", apellidp:"Perez"},
-        { id:3, nombre:"Pepe", apellidp:"Grillo"},
-        { id:4, nombre:"Alicia", apellidp:"Paredes"}
-    ]
-    res.json(items)
-}) */
+                // Almacenar los datos del usuario en la sesión
+                req.session.userId = user.idUser;
+                req.session.userRole = user.user_role;
 
-app.use('/api', routes)
+                // Redirigir según el rol del usuario
+                switch (user.user_role) {
+                    case 'admin':
+                        return res.json({ message: 'Bienvenido al Dashboard de Admin' });
+                    case 'client':
+                        return res.json({ message: 'Bienvenido al Dashboard de Cliente' });
+                    case 'Delivery_man':
+                        return res.json({ message: 'Bienvenido al Dashboard de Repartidor' });
+                    case 'manager':
+                        return res.json({ message: 'Bienvenido al Dashboard de Manager' });
+                    default:
+                        return res.status(400).json({ message: 'Rol desconocido' });
+                }
+            } else {
+                return res.status(401).json({ status: 'error', message: 'Credenciales incorrectas' });
+            }
+        })
+        .catch(error => {
+            console.error('Error en la consulta a la base de datos:', error);
+            res.status(500).json({ status: 'error', message: 'Error en la base de datos' });
+        });
+});
+
+// Middleware para verificar si el usuario está autenticado
+function isAuthenticated(req, res, next) {
+    if (req.session.userId) {
+        return next();
+    }
+    return res.status(401).json({ message: 'No autenticado' });
+}
+
+// Ruta de ejemplo que solo puede acceder el usuario autenticado
+app.get('/api/dashboard', isAuthenticated, (req, res) => {
+    const userRole = req.session.userRole;
+    switch (userRole) {
+        case 'admin':
+            return res.json({ message: 'Dashboard Admin' });
+        case 'client':
+            return res.json({ message: 'Dashboard Cliente' });
+        case 'Delivery_man':
+            return res.json({ message: 'Dashboard Repartidor' });
+        case 'manager':
+            return res.json({ message: 'Dashboard Manager' });
+        default:
+            return res.status(400).json({ message: 'Rol no reconocido' });
+    }
+});
+
 // Ruta de bienvenida
 app.get('/', (req, res) => {
     res.json({
@@ -39,15 +98,12 @@ app.use((req, res, next) => {
     console.error("Ruta no encontrada", error.stack);
     res.status(504).json({
         status: "error",
-        message: "Algo salio mal"
-    });  
+        message: "Algo salió mal"
+    });
 });
 
-
-
-
+// Puerto del servidor
 const PORT = process.env.PORT || 3000;
-app.listen (PORT, () =>{
-    console.log(`Servidor ejecutandose en el puerto ${PORT}`)
-})
-
+app.listen(PORT, () => {
+    console.log(`Servidor ejecutándose en el puerto ${PORT}`);
+});

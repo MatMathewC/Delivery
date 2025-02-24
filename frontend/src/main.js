@@ -5,9 +5,15 @@ import Footer from './componentes/Footer';
 import Inicio from './pages/presentacion/Inicio';
 import Rol from './pages/presentacion/Rol';
 import IniciarSesion from './pages/presentacion/IniciarSesion';
-import IndexPropietario from './pages/propietarios/IndexPropietario';
-import AddCliente from './pages/clientes/Cliente';
-import AddGerente from './pages/gerentes/Gerente';
+import AddClient from './pages/clientes/AddClient';
+// import ClientDashboard from './pages/clientes/ClientDashboard';
+import AddOwner from './pages/propietarios/AddOwner';
+import OwnerDashboard from './pages/propietarios/OwnerDashboard';
+import AddDeliveryPerson from './pages/repartidores/AddDeliveryPerson';
+// import DeliveryPersonDashboard from './pages/repartidores/DeliveryPersonDashboard';
+import AddStore from './pages/tiendas/AddStore';
+import AddProduct from './pages/productos/AddProduct';
+import AddAddress from './pages/direcciones/AddAddress';
 
 // import ListTesistas from './pages/tesistas/ListTesistas';
 
@@ -25,28 +31,44 @@ function initApp() {
     const path = window.location.pathname;
     let mainContent;
 
-    try{
-
-      
+    try{      
       // Se manejaran todas las rutas
       switch(path){
         case '/':
           mainContent = Inicio();
           break;
-        case '/crear_cuenta':
+        case '/crear-cuenta':
           mainContent = Rol();
           break;
-        case '/iniciar_sesion':
+        case '/iniciar-sesion':
           mainContent = IniciarSesion();
           break;
-        case '/propietario/index':
-          mainContent = IndexPropietario();
+        case '/add-client':
+          mainContent = AddClient();
           break;
-        case '/addcliente':
-          mainContent = AddCliente();
+        case '/owner-dashboard':
+          mainContent = ClientDashboard();
           break;
-        case '/addgerente':
-          mainContent = AddGerente();
+        case '/add-owner':
+          mainContent = AddOwner();
+          break;
+        case '/owner-dashboard':
+          mainContent = OwnerDashboard();
+          break;
+        case '/add-delivery-person':
+          mainContent = AddDeliveryPerson();
+          break;
+        case '/delivery-person-dashboard':
+          mainContent = DeliveryPersonDashboard();
+          break;
+        case '/add-tienda':
+          mainContent = AddStore();
+          break;
+        case '/add-producto':
+          mainContent = AddProduct();
+          break;
+        case '/add-direccion':
+          mainContent = AddAddress();
           break;
         //case 'login':
         //case 'dashboard':
@@ -71,8 +93,6 @@ function initApp() {
       }
 
       app.classList.add('app-container');
-    
-
 
     }catch(error){
       console.log('Error al buscar la ruta ingresada', error);
@@ -102,9 +122,5 @@ function initApp() {
 
 }
   
-
+console.log("Senden ayuda 😔")
 document.addEventListener('DOMContentLoaded', initApp);
-
-
-
-

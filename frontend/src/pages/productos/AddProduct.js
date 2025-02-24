@@ -1,26 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Producto</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-</head>
-<body>
-    <header class="header">
-        <div class="container">
-            <h1 class="logo">Emprendimientos</h1>
-            <nav class="nav">
-                <ul class="nav-list">
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="crear-tienda.html" class="btn">Crear Tienda</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+import './AddProduct.css';
+function AddProduct() {
+    return (`
 
-    <main>
+<main>
         <div class="auth-container">
             <h2>Crear Producto</h2>
             <form id="crear-producto-form" class="auth-form">
@@ -45,11 +27,10 @@
             </form>
         </div>
     </main>
+            `
+    
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Delivery para Emprendimientos. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-</body>
-</html>
+    );
+}
+
+export default AddProduct
