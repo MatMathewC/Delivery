@@ -9,12 +9,13 @@
   "keywords": [],
   "author": "Tais Carreño, Mateo Merchán, Alddrin Venegas",
   "license": "ISC",
-  "description": "Backend del sistema de delivery. Paquetes instalados: express cors dotenv nodemon",
+  "description": "Backend del sistema de emprendimientos y delivery. Paquetes instalados: express cors dotenv nodemon",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-session": "^1.18.1",
+    "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.12.0",
     "nodemon": "^3.1.9"
   }

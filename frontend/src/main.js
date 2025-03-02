@@ -14,14 +14,18 @@ import AddDeliveryPerson from './pages/repartidores/AddDeliveryPerson';
 import AddStore from './pages/tiendas/AddStore';
 import AddProduct from './pages/productos/AddProduct';
 import AddAddress from './pages/direcciones/AddAddress';
+import AddCategory from './pages/categorias/AddCategory';
+import AddSubCategory from './pages/categorias/AddSubcategory';
+import AddOrder from './pages/pedidos/AddOrder';
+import AddRating from './pages/calificaciones/AddRating';
+import ListDirections from './pages/direcciones/ListAddresses';
 
 // import ListTesistas from './pages/tesistas/ListTesistas';
 
 function renderMainContent() {
-  return
-  `
-
-  `
+  return `
+  
+  `;
 }
 
 function initApp() {
@@ -31,9 +35,9 @@ function initApp() {
     const path = window.location.pathname;
     let mainContent;
 
-    try{      
-      // Se manejaran todas las rutas
-      switch(path){
+    try {      
+      // Se manejarán todas las rutas
+      switch (path) {
         case '/':
           mainContent = Inicio();
           break;
@@ -46,7 +50,7 @@ function initApp() {
         case '/add-client':
           mainContent = AddClient();
           break;
-        case '/owner-dashboard':
+        case '/client-dashboard':
           mainContent = ClientDashboard();
           break;
         case '/add-owner':
@@ -61,21 +65,42 @@ function initApp() {
         case '/delivery-person-dashboard':
           mainContent = DeliveryPersonDashboard();
           break;
-        case '/add-tienda':
+        case '/add-store':
           mainContent = AddStore();
           break;
-        case '/add-producto':
+        case '/add-product':
           mainContent = AddProduct();
           break;
-        case '/add-direccion':
+        case '/directions':
+          const directionList = new ListDirections();
+          mainContent = await directionList.render();
+          break;
+        case '/add-address':
           mainContent = AddAddress();
           break;
-        //case 'login':
-        //case 'dashboard':
+        case '/delete-address/:id':
+          mainContent = AddCategory();
+          break;
+        case '/add-category':
+          mainContent = AddCategory();
+          break;
+        case '/add-subcategory':
+          mainContent = AddSubCategory();
+          break;
+        case '/add-order':
+          mainContent = AddOrder();
+          break;
+        case '/add-rating':
+          mainContent = AddRating();
+          break;
         default:
           mainContent = Inicio();
           break;
       }
+
+      // Verificar si el usuario está autenticado
+      // const token = localStorage.getItem('token');
+      // const isAuthenticated = !!token;
 
       // Se arma la estructura básica del proyecto
       const content = `
@@ -122,5 +147,4 @@ function initApp() {
 
 }
   
-console.log("Senden ayuda 😔")
 document.addEventListener('DOMContentLoaded', initApp);

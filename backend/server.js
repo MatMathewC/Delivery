@@ -1,109 +1,28 @@
 const express = require('express');
-const cors = require('cors');
 const dotenv = require('dotenv');
-const session = require('express-session');
-const mysqlPromise = require('./database'); // Importa la conexión a la base de datos
-dotenv.config();
+const routes = require('./routes/routes.js'); // Importa el archivo de rutas
+
+dotenv.config(); // Carga las variables de entorno
 
 const app = express();
 
-// Middleware
-app.use(cors({
-    origin: 'http://localhost:5173', // URL de tu aplicación Vite
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-}));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// Middleware global
+app.use(express.json()); // Para parsear JSON en las solicitudes
+app.use(express.urlencoded({ extended: true })); // Para parsear datos de formularios
 
-// Configuración de la sesión
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false } // Usa 'true' si tienes HTTPS
-}));
+// Montar las rutas definidas en routes.js
+app.use('/', routes);
 
-// Ruta para login y autenticación
-app.post('/api/login', (req, res) => {
-    const { username, password } = req.body;
-
-    // Verifica las credenciales en la base de datos
-    mysqlPromise.query('SELECT * FROM User WHERE username = ? AND password = ?', [username, password])
-        .then(([results]) => {
-            if (results.length > 0) {
-                const user = results[0];
-
-                // Almacenar los datos del usuario en la sesión
-                req.session.userId = user.idUser;
-                req.session.userRole = user.user_role;
-
-                // Redirigir según el rol del usuario
-                switch (user.user_role) {
-                    case 'admin':
-                        return res.json({ message: 'Bienvenido al Dashboard de Admin' });
-                    case 'client':
-                        return res.json({ message: 'Bienvenido al Dashboard de Cliente' });
-                    case 'Delivery_man':
-                        return res.json({ message: 'Bienvenido al Dashboard de Repartidor' });
-                    case 'manager':
-                        return res.json({ message: 'Bienvenido al Dashboard de Manager' });
-                    default:
-                        return res.status(400).json({ message: 'Rol desconocido' });
-                }
-            } else {
-                return res.status(401).json({ status: 'error', message: 'Credenciales incorrectas' });
-            }
-        })
-        .catch(error => {
-            console.error('Error en la consulta a la base de datos:', error);
-            res.status(500).json({ status: 'error', message: 'Error en la base de datos' });
-        });
-});
-
-// Middleware para verificar si el usuario está autenticado
-function isAuthenticated(req, res, next) {
-    if (req.session.userId) {
-        return next();
-    }
-    return res.status(401).json({ message: 'No autenticado' });
-}
-
-// Ruta de ejemplo que solo puede acceder el usuario autenticado
-app.get('/api/dashboard', isAuthenticated, (req, res) => {
-    const userRole = req.session.userRole;
-    switch (userRole) {
-        case 'admin':
-            return res.json({ message: 'Dashboard Admin' });
-        case 'client':
-            return res.json({ message: 'Dashboard Cliente' });
-        case 'Delivery_man':
-            return res.json({ message: 'Dashboard Repartidor' });
-        case 'manager':
-            return res.json({ message: 'Dashboard Manager' });
-        default:
-            return res.status(400).json({ message: 'Rol no reconocido' });
-    }
-});
-
-// Ruta de bienvenida
-app.get('/', (req, res) => {
-    res.json({
-        message: "Bienvenido al Backend de Delivery"
-    });
-});
-
-// Manejo de errores
-app.use((req, res, next) => {
-    console.error("Ruta no encontrada", error.stack);
-    res.status(504).json({
-        status: "error",
-        message: "Algo salió mal"
-    });
+// Manejo de errores global
+app.use((err, req, res, next) => {
+    console.error('Error global:', err.stack);
+    res.status(500).json({ status: 'error', message: 'Algo salió mal en el servidor' });
 });
 
 // Puerto del servidor
 const PORT = process.env.PORT || 3000;
+
+// Iniciar el servidor
 app.listen(PORT, () => {
-    console.log(`Servidor ejecutándose en el puerto ${PORT}`);
+    console.log(`Servidor ejecutándose en http://localhost:${PORT}`);
 });

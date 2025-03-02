@@ -6,7 +6,7 @@ function Navigation() {
         <nav>
         <div class="nav-container">
             <div class="logo-container">
-                <img src="../public/img/logo.png" alt="Logo">
+                <img src="/img/logo.png" alt="Logo">
             </div>
             <ul class="nav-list">
                 <li><a href="index.html">Inicio</a></li>

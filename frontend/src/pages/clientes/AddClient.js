@@ -2,7 +2,7 @@ import './AddClient.css';
 function AddClient() {
     return (`
 
-<main>
+    <main>
         <div class="auth-container">
             <h2>Crear Cuenta</h2>
             <form id="crear-cuenta-form" class="auth-form">
@@ -18,9 +18,7 @@ function AddClient() {
             </form>
         </div>
     </main>
-        `
-    
-
+    `
     );
 }
 

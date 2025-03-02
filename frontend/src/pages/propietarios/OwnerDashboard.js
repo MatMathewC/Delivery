@@ -5,23 +5,23 @@ function OwnerDashboard(){
             <div class="stats">
                 <div class="stat-item">
                     <h3>Tiendas</h3>
-                    <p>2</p>
+                    <p>0</p>
                 </div>
                 <div class="stat-item">
                     <h3>Pedidos procesados</h3>
-                    <p>89</p>
+                    <p>0</p>
                 </div>
                 <div class="stat-item">
                     <h3>Pedidos en preparación</h3>
-                    <p>2</p>
+                    <p>0</p>
                 </div>
                 <div class="stat-item">
                     <h3>Pedidos entregados</h3>
-                    <p>4</p>
+                    <p>0</p>
                 </div>
                 <div class="stat-item">
                     <h3>Ganancias</h3>
-                    <p>$ 498,00</p>
+                    <p>$0</p>
                 </div>
                 </div>
 
@@ -39,18 +39,7 @@ function OwnerDashboard(){
                     </thead>
                     <tbody>
                     <tr>
-                        <td>OD-24-10-2GEU-ZWKEBFUL7</td>
-                        <td>$ 6,00</td>
-                        <td>3 meses, 1 semana ago</td>
-                        <td>1 semana, 6 días ago</td>
-                        <td><button class="view-btn">Ver</button></td>
-                    </tr>
-                    <tr>
-                        <td>OD-24-10-FEZH-49M7UHTI4</td>
-                        <td>$ 6,00</td>
-                        <td>3 meses, 1 semana ago</td>
-                        <td>3 semanas, 2 días ago</td>
-                        <td><button class="view-btn">Ver</button></td>
+                        <td colspan="5">No hay pedidos entregados</td>
                     </tr>
                     </tbody>
                 </table>

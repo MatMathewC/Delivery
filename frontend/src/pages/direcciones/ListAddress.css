@@ -1,0 +1,116 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FFE4E1;
+    margin: 0;
+    padding: 0;
+}
+
+.directions-section {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #FA8072;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.actions-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.btn-add {
+    background-color: #FF6F61;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+.btn-add:hover {
+    background-color: #E65C50;
+}
+
+/* Tabla */
+.directions-container {
+    overflow-x: auto;
+}
+
+.directions-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.directions-table th, .directions-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #FA8072;
+}
+
+.directions-table th {
+    background-color: #FF6F61;
+    color: white;
+}
+
+.directions-table tr:hover {
+    background-color: #FFD1C1;
+}
+
+/* Botones de acciones */
+.btn-edit, .btn-delete {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.btn-edit {
+    background-color: #FFA07A;
+    color: white;
+}
+
+.btn-edit:hover {
+    background-color: #FF7F50;
+}
+
+.btn-delete {
+    background-color: #E65C50;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #D1463E;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .directions-section {
+        width: 95%;
+        padding: 15px;
+    }
+    .btn-add {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+    .directions-table th, .directions-table td {
+        padding: 8px;
+    }
+}
