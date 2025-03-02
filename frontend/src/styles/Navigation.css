@@ -67,6 +67,7 @@ nav {
 
 .logo-container img {
     height: 60px;
+    border-radius: 25%;
 }
 
 @media (max-width: 600px) {

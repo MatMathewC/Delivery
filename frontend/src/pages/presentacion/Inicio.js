@@ -5,7 +5,7 @@ function Inicio(){
     <header>
         <div class="header-container">
             <figure class="logo-container">
-                <img src="/img/logo.png" alt="Logo">
+                <img src="/img/logo_emprende.png" alt="Logo">
             </figure>
             <div class="text-container">
                 <h1>Sistema Delivery de Emprendimientos</h1>
